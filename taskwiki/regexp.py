@@ -44,8 +44,8 @@ DATE_FORMAT = "(%Y-%m-%d)"
 VIEWPORT = {
     'default':
     re.compile(
-        r'^'                             # Starts at the begging of the line
-        r'(?P<header_start>[=]+)'        # Heading begging
+        r'^'                             # Starts at the beginning of the line
+        r'(?P<header_start>[=]+)'        # Heading beginning
         r'(?P<name>[^=\|\[\{]*)'         # Name of the viewport, all before the | sign
                                          # Cannot include '[', '=', '|', and '{'
         r'\|'                            # Bar
@@ -63,11 +63,12 @@ VIEWPORT = {
         r'(limit:(?P<count>[0-9]+))?'    # Optional count indicator
         r'\s*'                           # Any whitespace
         r'[=]+'                          # Header ending
+        r'(^$)*'                         # Optional empty lines after header
     ),
     'markdown':
     re.compile(
-        r'^'                             # Starts at the begging of the line
-        r'(?P<header_start>[#]+)'        # Heading begging
+        r'^'                             # Starts at the beginning of the line
+        r'(?P<header_start>[#]+)'        # Heading beginning
         r'(?P<name>[^#\|\[\{]*)'         # Name of the viewport, all before the | sign
                                          # Cannot include '[', '#', '|', and '{'
         r'\|'                            # Bar
@@ -85,6 +86,7 @@ VIEWPORT = {
         r'(limit:(?P<count>[0-9]+))?'    # Optional count indicator
         r'\s*'                           # Any whitespace
         r'$'                             # End of line
+        r'(^$)*'                         # Optional empty lines after header
     )
 }
 
